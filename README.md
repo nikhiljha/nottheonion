@@ -1,6 +1,7 @@
 # Not the Onion?
 
 [![Join the chat at https://gitter.im/nikhiljha/nottheonion](https://badges.gitter.im/nikhiljha/nottheonion.svg)](https://gitter.im/nikhiljha/nottheonion?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![https://telegram.me/notonionbot](https://img.shields.io/badge/💬 Telegram-NotOnionBot-blue.svg)](https://telegram.me/notonionbot)
 
 Can you tell if the article is fake or not? Find out at the onion bot!
 
