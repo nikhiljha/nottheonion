@@ -36,11 +36,15 @@ feedparser.on('readable', function() {
     , meta = this.meta
     , item;
   while (item = stream.read()) {
-    fs.appendFile(file, item.title + '` ' + item.categories[0] + '\n', function (err) {
+    fs.appendFile(file, item.title + '`' + item.categories[0] + '\n', function (err) {
           if (err) return console.log(err);
       });
   }
 });
+
+// Create User Database
+var levelup = require('levelup')
+var db = levelup('./mydb')
 
 // Let's pretend some guy from TG already asked for a title.
 var token = fs.readFileSync('telegram.token', 'utf-8');
@@ -65,7 +69,10 @@ bot.onText(/\/start(.*)/, function (msg, match) {
   var lines = text.split('\n');
   var fromId = msg.from.id;
   var resp = lines[Math.floor(Math.random()*lines.length)];
-  bot.sendMessage(fromId, resp, opts);
+  db.put(fromId + 't', resp.split('`')[1], function (err) {
+    if (err) return console.log('Ooops!', err) // some kind of I/O error
+  })
+  bot.sendMessage(fromId, resp.split('`')[0], opts);
 });
 
 // Matches
@@ -80,20 +87,39 @@ bot.onText(/(Not the )?Onion/, function (msg, match) {
     };
 
   // Check what user Said
-  if msg == 'Not the Onion' {
-    var onion = false
+  if (msg.text === 'Not the Onion') {
+    console.log(msg.text)
+    var onion = 'nottheonion'
   } else {
-    var onion = true
+    console.log(msg.text)
+    var onion = 'TheOnion'
   }
 
   // Check if they were right
   // If so, give them a point
-  // TODO: Figure out how to do this.
-
-  // Send them a new one.
-  var text = fs.readFileSync(file, 'utf-8')
-  var lines = text.split('\n');
-  var fromId = msg.from.id;
-  var resp = lines[Math.floor(Math.random()*lines.length)];
-  bot.sendMessage(fromId, resp, opts);
+  db.get(msg.from.id + 't', function (err, value) {
+    if (err) return console.log('Ooops!', err)
+    var text = fs.readFileSync(file, 'utf-8')
+    var lines = text.split('\n');
+    var fromId = msg.from.id;
+    var resp = lines[Math.floor(Math.random()*lines.length)];
+    console.log(value);
+    console.log(onion);
+    if (value == onion) {
+      db.put(msg.from.id + 's', 1, function (err) {
+        if (err) return console.log('oh nose', err);
+        db.put(fromId + 't', resp.split('`')[1], function (err) {
+          if (err) return console.log('Ooops!', err) // some kind of I/O error
+        })
+        bot.sendMessage(fromId, 'Correct!', opts);
+        bot.sendMessage(fromId, resp.split('`')[0], opts);
+      })
+    } else {
+      db.put(fromId + 't', resp.split('`')[1], function (err) {
+        if (err) return console.log('Ooops!', err) // some kind of I/O error
+      })
+      bot.sendMessage(fromId, 'Incorrect!', opts);
+      bot.sendMessage(fromId, resp.split('`')[0], opts);
+    }
+  })
 });
