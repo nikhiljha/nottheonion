@@ -1,0 +1,32 @@
+{
+  "name": "nottheonion",
+  "version": "1.0.0",
+  "description": "Test your truth-grabbing skills! Thanks Reddit!",
+  "main": "start.js",
+  "scripts": {
+    "test": "node start.js -t"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikhiljha/nottheonion.git"
+  },
+  "keywords": [
+    "reddit",
+    "telegram",
+    "game",
+    "onion"
+  ],
+  "author": "Nikhil Jha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nikhiljha/nottheonion/issues"
+  },
+  "homepage": "https://github.com/nikhiljha/nottheonion#readme",
+  "dependencies": {
+    "feed-read": "0.0.1",
+    "feedparser": "^1.1.4",
+    "jsonfile": "^2.3.0",
+    "node-telegram-bot-api": "^0.21.1",
+    "request": "^2.72.0"
+  }
+}
