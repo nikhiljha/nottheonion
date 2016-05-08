@@ -3,6 +3,9 @@ logs
 *.log
 npm-debug.log*
 
+# Telegram Token
+telegram.token
+
 # Runtime data
 pids
 *.pid
