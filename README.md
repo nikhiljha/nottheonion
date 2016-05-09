@@ -1,13 +1,13 @@
 # Not the Onion?
 
 [![Join the chat at https://gitter.im/nikhiljha/nottheonion](https://badges.gitter.im/nikhiljha/nottheonion.svg)](https://gitter.im/nikhiljha/nottheonion?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![https://telegram.me/notonionbot](https://img.shields.io/badge/💬 Telegram-NotOnionBot-blue.svg)](https://telegram.me/notonionbot)
+[![https://telegram.me/notonionbot](https://img.shields.io/badge/💬 Telegram-NotOnionBot-blue.svg)](https://telegram.me/notonionbot) [![https://travis-ci.org/nikhiljha/nottheonion](https://travis-ci.org/nikhiljha/nottheonion.svg)](https://travis-ci.org/nikhiljha/nottheonion)
 
 Can you tell if the article is fake or not? Find out at the onion bot!
 
 ## What is it?
 
-This is a [Telegram] bot that sends you titles of posts from the subreddits /r/TheOnion and /r/nottheonion. Your job is to guess what subreddit it's from. TheOnion has all fake news articles, and nottheonion has all real news articles.
+This is a [Telegram](https://telegram.org/) bot that sends you titles of posts from the subreddits [/r/TheOnion](http://reddit.com/r/TheOnion) and [/r/nottheonion](http://reddit.com/r/nottheonion). The goal of the game is to guess what subreddit it's from. TheOnion has all fake news articles, and nottheonion has all real news articles.
 
 ## Install
 
@@ -24,7 +24,10 @@ Then just run all of these commands! :+1:
 git clone https://github.com/nikhiljha/nottheonion.git
 cd nottheonion
 npm install
-node start.js
 ```
+
+then make a file called telegram.token with ONLY your telegram token in it. NO NEW LINE, NO EXTRA SPACES.
+
+to run just do `node start.js`
 
 and you're done! That wasn't so hard, was it?
