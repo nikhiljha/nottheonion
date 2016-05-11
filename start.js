@@ -97,7 +97,6 @@ bot.onText(/(Not the )?Onion/, function (msg, match) {
                         db.put(msg.from.id + 't', category, function (err) {
                           if (err) return console.log('Error!', err) // some kind of I/O error
                           bot.sendMessage(msg.from.id, resp, opts);
-                          bot.sendMessage(msg.from.id, "Correct!", opts);
                         })
                     });
                 });
@@ -105,8 +104,9 @@ bot.onText(/(Not the )?Onion/, function (msg, match) {
       });
 
       db.get(msg.from.id + 's', function (err, value) {
-        db.put(msg.from.id + 's', value + 1, function (err) {
+        db.put(msg.from.id + 's', (value - 0) + 1, function (err) {
           if (err) return console.log(err);
+          bot.sendMessage(msg.from.id, "Correct! " + value, opts);
         })
       });
 
