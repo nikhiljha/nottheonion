@@ -104,9 +104,14 @@ bot.onText(/(Not the )?Onion/, function (msg, match) {
       });
 
       db.get(msg.from.id + 's', function (err, value) {
-        db.put(msg.from.id + 's', (value - 0) + 1, function (err) {
+        if (value = "NaN") {
+          var thingy12 = 0;
+        } else {
+          var thingy12 = (value - 0) + 1
+        }
+        db.put(msg.from.id + 's', thingy12, function (err) {
           if (err) return console.log(err);
-          bot.sendMessage(msg.from.id, "Correct! " + value, opts);
+          bot.sendMessage(msg.from.id, "Correct! " + thingy12, opts);
         })
       });
 
@@ -123,7 +128,6 @@ bot.onText(/(Not the )?Onion/, function (msg, match) {
                         db.put(msg.from.id + 't', category, function (err) {
                           if (err) return console.log('Error!', err) // some kind of I/O error
                           bot.sendMessage(msg.from.id, resp, opts);
-                          bot.sendMessage(msg.from.id, "Incorrect!", opts);
                         })
                     });
                 });
@@ -131,8 +135,14 @@ bot.onText(/(Not the )?Onion/, function (msg, match) {
       });
 
       db.get(msg.from.id + 's', function (err, value) {
-        db.put(msg.from.id + 's', value - 1, function (err) {
+        if (value = "NaN") {
+          var thingy12 = 0;
+        } else {
+          var thingy12 = value - 1
+        }
+        db.put(msg.from.id + 's', thingy12, function (err) {
           if (err) return console.log(err);
+          bot.sendMessage(msg.from.id, "Incorrect!" + thingy12, opts);
         })
       });
 
