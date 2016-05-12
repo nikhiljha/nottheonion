@@ -135,8 +135,8 @@ bot.onText(/(Not the )?Onion/, function (msg, match) {
       });
 
       db.get(msg.from.id + 's', function (err, value) {
-        if (value = "NaN") {
-          var thingy12 = 0;
+        if (value === "NaN") {
+          var thingy12 = parseInt(value, 10) + 1
         } else {
           var thingy12 = value - 1
         }
