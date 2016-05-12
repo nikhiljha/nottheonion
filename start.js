@@ -104,10 +104,10 @@ bot.onText(/(Not the )?Onion/, function (msg, match) {
       });
 
       db.get(msg.from.id + 's', function (err, value) {
-        if (value = "NaN") {
+        if (value === "NaN") {
           var thingy12 = 0;
         } else {
-          var thingy12 = (value - 0) + 1
+          var thingy12 = parseInt(value, 10) + 1
         }
         db.put(msg.from.id + 's', thingy12, function (err) {
           if (err) return console.log(err);
