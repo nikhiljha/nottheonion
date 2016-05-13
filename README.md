@@ -17,6 +17,7 @@ You will need the following things installed for this to work.
  * Python 2.7 (Initial Install Only)
  * npm
  * nodejs
+ * redis
 
 Then just run all of these commands! :+1:
 
@@ -24,6 +25,7 @@ Then just run all of these commands! :+1:
 git clone https://github.com/nikhiljha/nottheonion.git
 cd nottheonion
 npm install
+node article.js (when it's done press Ctrl+C)
 ```
 
 then make a file called telegram.token with ONLY your telegram token in it. NO NEW LINE, NO EXTRA SPACES.
